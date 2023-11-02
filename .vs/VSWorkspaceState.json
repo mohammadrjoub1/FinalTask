@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\cypress",
+    "\\cypress\\downloads",
+    "\\cypress\\e2e",
+    "\\cypress\\support",
+    "\\cypress\\support\\helpers",
+    "\\cypress\\support\\pageObjects"
+  ],
+  "SelectedNode": "\\cypress\\e2e\\orangeHRM.cy.ts",
+  "PreviewInSolutionExplorer": false
+}
