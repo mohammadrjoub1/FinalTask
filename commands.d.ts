@@ -12,5 +12,8 @@ declare namespace Cypress {
     deleteJobTitle(jobId);
     attachJobTitleAndlocationToEmp(jobId, locationId, empNumber);
     prepareDataForPhaseOne();
+    deleteEmployee(empNumber);
+    deleteJobTitle(jobId);
+    deleteLocation(locationId);
   }
 }

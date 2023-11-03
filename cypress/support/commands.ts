@@ -60,7 +60,7 @@ Cypress.Commands.add("createEmp", (firstName, middleName, lastName, empId, usern
         })
         .then(() => {
           // Alias the empNumber for later use
-          cy.wrap(response.body.data.empNumber).as("employeeNumber");
+          cy.wrap(response.body.data.empNumber).as(`employee${firstName}`);
         });
     });
 });
@@ -162,18 +162,47 @@ Cypress.Commands.add("prepareDataForPhaseOne", () => {
   cy.fixture("empData1").then((data) => {
     cy.createEmp(data.firstName, data.middleName, data.lastName, data.employeeId, data.username, data.password).then((empNumber) => {});
   });
-  AttachJobTitleAndlocationToEmp.attachJobTitleAndlocationToEmp();
+  AttachJobTitleAndlocationToEmp.attachJobTitleAndlocationToEmp("mohammad");
+
   //create employee#2
   cy.fixture("empData2").then((data) => {
     cy.createEmp(data.firstName, data.middleName, data.lastName, data.employeeId, data.username, data.password).then((empNumber) => {});
   });
-  AttachJobTitleAndlocationToEmp.attachJobTitleAndlocationToEmp();
+  AttachJobTitleAndlocationToEmp.attachJobTitleAndlocationToEmp("ahmed");
 
   //create employee#3
   cy.fixture("empData3").then((data) => {
     cy.createEmp(data.firstName, data.middleName, data.lastName, data.employeeId, data.username, data.password).then((empNumber) => {});
   });
-  AttachJobTitleAndlocationToEmp.attachJobTitleAndlocationToEmp();
+  AttachJobTitleAndlocationToEmp.attachJobTitleAndlocationToEmp("mahmoud");
 
   PreparingDataAssertion.preparingDataAssertion();
+});
+
+Cypress.Commands.add("deleteEmployee", (empNumber) => {
+  cy.request({
+    method: "DELETE",
+    url: "/api/v2/pim/employees",
+    body: {
+      ids: [empNumber],
+    },
+  });
+});
+Cypress.Commands.add("deleteJobTitle", (jobId) => {
+  cy.request({
+    method: "DELETE",
+    url: "/api/v2/admin/job-titles",
+    body: {
+      ids: [jobId],
+    },
+  });
+});
+Cypress.Commands.add("deleteLocation", (lcoationId) => {
+  cy.request({
+    method: "DELETE",
+    url: "/api/v2/admin/locations",
+    body: {
+      ids: [lcoationId],
+    },
+  });
 });

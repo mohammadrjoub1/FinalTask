@@ -1,6 +1,6 @@
 export class AttachJobTitleAndlocationToEmp {
-  static attachJobTitleAndlocationToEmp() {
-    cy.get("@employeeNumber").then((employeeNumber) => {
+  static attachJobTitleAndlocationToEmp(name) {
+    cy.get(`@employee${name}`).then((employeeNumber) => {
       cy.get("@locationId").then((locationId) => {
         cy.get("@jobTitleId").then((jobTitleId) => {
           cy.log(`emplyee is id :${employeeNumber}`);

@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { AttachJobTitleAndlocationToEmp } from "../support/helpers/attachJobTitleAndlocationToEmp";
 import { Report } from "../support/helpers/report";
+import { DeleteAllData } from "../support/helpers/deleteAllData";
 Cypress.on("uncaught:exception", (err, runnable) => {
   return false;
 });
@@ -24,10 +25,12 @@ describe("Senario #1", () => {
     cy.get("@jobTitleId").then((jobTitleId) => {
       cy.get("@locationId").then((locationId) => {
         Report.deleteAllReports();
-
         Report.createReport(jobTitleId, locationId);
       });
     });
+
     Report.reportUiAssertion();
+
+    DeleteAllData.deleteEverything();
   });
 });
