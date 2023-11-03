@@ -6,10 +6,11 @@ declare namespace Cypress {
     logOut();
     createEmp(firstName, middleName, lastName, empId, username, password);
     deleteEmp(empNumber);
-    createLocation(name,countryCode,province,city,address,zipCode,phone,fax,note);
+    createLocation(name, countryCode, province, city, address, zipCode, phone, fax, note);
     deleteLocation(locationId);
-    createJobTitle(title,description,note);
+    createJobTitle(title, description, note);
     deleteJobTitle(jobId);
+    attachJobTitleAndlocationToEmp(jobId, locationId, empNumber);
+    prepareDataForPhaseOne();
   }
 }
-

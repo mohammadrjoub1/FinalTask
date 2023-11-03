@@ -8,7 +8,7 @@ import "cypress-file-upload";
 
 Cypress.Commands.add("login", (username: string, password: string) => {
   cy.visit("/auth/login");
-  //   cy.wait(5000);
+  cy.wait(5000);
   cy.get(":nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input").type(username);
   cy.get(":nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input").type(password);
   cy.get(".oxd-button").click();
@@ -42,10 +42,23 @@ Cypress.Commands.add("createEmp", (firstName, middleName, lastName, empId, usern
           empNumber: response.body.data.empNumber,
         },
       }).then(() => {
-        return response.body.data.empNumber;
+        // Alias the empNumber for later use
+        cy.wrap(response.body.data.empNumber).as("employeeNumber");
       });
     });
 });
+Cypress.Commands.add("attachJobTitleAndlocationToEmp", (jobId, locationId, empNumber) => {
+  cy.request({
+    method: "PUT",
+    url: `/api/v2/pim/employees/${empNumber}/job-details`,
+    body: {
+      joinedDate: null,
+      jobTitleId: jobId,
+      locationId: locationId,
+    },
+  });
+});
+
 Cypress.Commands.add("deleteEmp", (empNumber) => {
   cy.request({
     method: "DELETE",
@@ -73,7 +86,8 @@ Cypress.Commands.add("createLocation", (name, countryCode, province, city, addre
       },
     })
     .then((response) => {
-      return response.body.data.id;
+      // Alias the locationId for later use
+      cy.wrap(response.body.data.id).as("locationId");
     });
 });
 Cypress.Commands.add("deleteLocation", (locationId) => {
@@ -97,8 +111,9 @@ Cypress.Commands.add("createJobTitle", (title, description, note) => {
         note: note,
       },
     })
-    .then((respone) => {
-      return respone.body.data.id;
+    .then((response) => {
+      // Alias the jobTitleId for later use
+      cy.wrap(response.body.data.id).as("jobTitleId");
     });
 });
 Cypress.Commands.add("deleteJobTitle", (jobId) => {
@@ -108,5 +123,21 @@ Cypress.Commands.add("deleteJobTitle", (jobId) => {
     body: {
       ids: [jobId],
     },
+  });
+});
+
+Cypress.Commands.add("prepareDataForPhaseOne", () => {
+  cy.fixture("locationData").then((data) => {
+    cy.createLocation(data.name, data.countryCode, data.province, data.city, data.address, data.zipCode, data.phone, data.fax, data.note).then((locationId) => {
+      cy.log(locationId);
+    });
+  });
+  cy.fixture("jobTitle").then((data) => {
+    cy.createJobTitle(data.title, data.description, data.note).then((jobTitleId) => {});
+  });
+  cy.fixture("empData").then((data) => {
+    cy.createEmp(data.firstName, data.middleName, data.lastName, data.employeeId, data.username, data.password).then((empNumber) => {
+      cy.log(empNumber);
+    });
   });
 });
