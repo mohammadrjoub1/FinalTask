@@ -5,5 +5,5 @@ describe("Senario #1", () => {
     cy.login("Admin", "admin123");
   });
 
-  it("TC #1", () => {});
+  it("TC  #1", () => {});
 });
