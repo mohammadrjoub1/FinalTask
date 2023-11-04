@@ -3,6 +3,7 @@
 import "cypress-file-upload";
 import { AttachJobTitleAndlocationToEmp } from "./helpers/attachJobTitleAndlocationToEmp";
 import { PreparingDataAssertion } from "./helpers/preparingDataAssertion";
+const randomNumber = Math.floor(Math.random() * 100) + 1;
 
 // commands.js or commands.ts
 
@@ -153,30 +154,29 @@ Cypress.Commands.add("prepareDataForPhaseOne", () => {
 
   //create jobTitle and save jobTitleId for later use
   cy.fixture("jobTitle").then((data) => {
-    cy.createJobTitle(data.title, data.description, data.note).then((jobId) => {
+    cy.createJobTitle(`${data.title}${randomNumber}`, data.description, data.note).then((jobId) => {
       // cy.deleteJobTitle(jobId);
     });
   });
 
   //create employee#1
   cy.fixture("empData1").then((data) => {
-    cy.createEmp(data.firstName, data.middleName, data.lastName, data.employeeId, data.username, data.password).then((empNumber) => {});
+    cy.createEmp(data.firstName, data.middleName, data.lastName, data.employeeId, `${data.username}${randomNumber}`, data.password).then((empNumber) => {});
   });
   AttachJobTitleAndlocationToEmp.attachJobTitleAndlocationToEmp("mohammad");
 
   //create employee#2
   cy.fixture("empData2").then((data) => {
-    cy.createEmp(data.firstName, data.middleName, data.lastName, data.employeeId, data.username, data.password).then((empNumber) => {});
+    cy.createEmp(data.firstName, data.middleName, data.lastName, data.employeeId, `${data.username}${randomNumber}`, data.password).then((empNumber) => {});
   });
   AttachJobTitleAndlocationToEmp.attachJobTitleAndlocationToEmp("ahmed");
 
   //create employee#3
   cy.fixture("empData3").then((data) => {
-    cy.createEmp(data.firstName, data.middleName, data.lastName, data.employeeId, data.username, data.password).then((empNumber) => {});
+    cy.createEmp(data.firstName, data.middleName, data.lastName, data.employeeId, `${data.username}${randomNumber}`, data.password).then((empNumber) => {});
   });
   AttachJobTitleAndlocationToEmp.attachJobTitleAndlocationToEmp("mahmoud");
 
-  PreparingDataAssertion.preparingDataAssertion();
 });
 
 Cypress.Commands.add("deleteEmployee", (empNumber) => {

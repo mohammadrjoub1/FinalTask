@@ -79,9 +79,9 @@ export class Report {
         if (text.includes("No Records Found")) {
           cy.log("no need to delete");
         } else {
-          cy.get(".oxd-table-row > :nth-child(1) > .oxd-checkbox-wrapper > label > .oxd-checkbox-input > .oxd-icon").click();
-          cy.get(".orangehrm-horizontal-padding > div > .oxd-button").click();
-          cy.get(".orangehrm-modal-footer > .oxd-button--label-danger").click();
+          cy.get(".oxd-table-row > :nth-child(1) > .oxd-checkbox-wrapper > label > .oxd-checkbox-input > .oxd-icon").click({ force: true });
+          cy.get(".orangehrm-horizontal-padding > div > .oxd-button").click({ force: true });
+          cy.get(".orangehrm-modal-footer > .oxd-button--label-danger").click({ force: true });
         }
       });
   }

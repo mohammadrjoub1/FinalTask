@@ -22,9 +22,10 @@ describe("Senario #1", () => {
     cy.prepareDataForPhaseOne();
   });
   it("TC #1", () => {
+    Report.deleteAllReports();
+
     cy.get("@jobTitleId").then((jobTitleId) => {
       cy.get("@locationId").then((locationId) => {
-        Report.deleteAllReports();
         Report.createReport(jobTitleId, locationId);
       });
     });
