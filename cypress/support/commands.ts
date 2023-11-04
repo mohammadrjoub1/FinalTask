@@ -20,7 +20,7 @@ Cypress.Commands.add("logOut", () => {
 });
 Cypress.Commands.add("createEmp", (firstName, middleName, lastName, empId, username, password) => {
   return cy
-    .request({
+    .api({
       method: "POST",
       url: "/api/v2/pim/employees",
       body: {
@@ -32,7 +32,7 @@ Cypress.Commands.add("createEmp", (firstName, middleName, lastName, empId, usern
       },
     })
     .then((response) => {
-      cy.request({
+      cy.api({
         method: "POST",
         url: "/api/v2/admin/users",
         body: {
@@ -44,7 +44,7 @@ Cypress.Commands.add("createEmp", (firstName, middleName, lastName, empId, usern
         },
       })
         .then(() => {
-          cy.request({
+          cy.api({
             method: "POST",
             url: `/api/v2/pim/employees/${response.body.data.empNumber}/salary-components`,
             body: {
@@ -65,7 +65,7 @@ Cypress.Commands.add("createEmp", (firstName, middleName, lastName, empId, usern
     });
 });
 Cypress.Commands.add("attachJobTitleAndlocationToEmp", (jobId, locationId, empNumber) => {
-  cy.request({
+  cy.api({
     method: "PUT",
     url: `/api/v2/pim/employees/${empNumber}/job-details`,
     body: {
@@ -77,7 +77,7 @@ Cypress.Commands.add("attachJobTitleAndlocationToEmp", (jobId, locationId, empNu
 });
 
 Cypress.Commands.add("deleteEmp", (empNumber) => {
-  cy.request({
+  cy.api({
     method: "DELETE",
     url: "/api/v2/pim/employees",
     body: {
@@ -87,7 +87,7 @@ Cypress.Commands.add("deleteEmp", (empNumber) => {
 });
 Cypress.Commands.add("createLocation", (name, countryCode, province, city, address, zipCode, phone, fax, note) => {
   return cy
-    .request({
+    .api({
       method: "POST",
       url: "/api/v2/admin/locations",
       body: {
@@ -108,7 +108,7 @@ Cypress.Commands.add("createLocation", (name, countryCode, province, city, addre
     });
 });
 Cypress.Commands.add("deleteLocation", (locationId) => {
-  cy.request({
+  cy.api({
     method: "DELETE",
     url: "/api/v2/admin/locations",
     body: {
@@ -118,7 +118,7 @@ Cypress.Commands.add("deleteLocation", (locationId) => {
 });
 Cypress.Commands.add("createJobTitle", (title, description, note) => {
   return cy
-    .request({
+    .api({
       method: "POST",
       url: "/api/v2/admin/job-titles",
       body: {
@@ -134,7 +134,7 @@ Cypress.Commands.add("createJobTitle", (title, description, note) => {
     });
 });
 Cypress.Commands.add("deleteJobTitle", (jobId) => {
-  cy.request({
+  cy.api({
     method: "DELETE",
     url: "/api/v2/admin/job-titles",
     body: {
@@ -180,7 +180,7 @@ Cypress.Commands.add("prepareDataForPhaseOne", () => {
 });
 
 Cypress.Commands.add("deleteEmployee", (empNumber) => {
-  cy.request({
+  cy.api({
     method: "DELETE",
     url: "/api/v2/pim/employees",
     body: {
@@ -189,7 +189,7 @@ Cypress.Commands.add("deleteEmployee", (empNumber) => {
   });
 });
 Cypress.Commands.add("deleteJobTitle", (jobId) => {
-  cy.request({
+  cy.api({
     method: "DELETE",
     url: "/api/v2/admin/job-titles",
     body: {
@@ -198,7 +198,7 @@ Cypress.Commands.add("deleteJobTitle", (jobId) => {
   });
 });
 Cypress.Commands.add("deleteLocation", (lcoationId) => {
-  cy.request({
+  cy.api({
     method: "DELETE",
     url: "/api/v2/admin/locations",
     body: {

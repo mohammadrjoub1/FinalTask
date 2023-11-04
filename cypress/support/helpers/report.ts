@@ -1,7 +1,7 @@
 export class Report {
   static createReport(jobTitleId, locationId) {
     //deletePreviousReports
-    cy.request({
+    cy.api({
       method: "POST",
       url: "/api/v2/pim/reports/defined",
       body: {
