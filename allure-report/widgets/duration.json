@@ -1,0 +1,1 @@
+[{"uid":"ca60a988dab20f15","name":"Admin should be able to Reject a claim","time":{"start":1699199801389,"stop":1699199819065,"duration":17676},"status":"passed","severity":"normal"},{"uid":"3dda3a36efd316a8","name":"Admin should be able to APPROVE (Pay) a claim","time":{"start":1699199768865,"stop":1699199799353,"duration":30488},"status":"passed","severity":"normal"}]

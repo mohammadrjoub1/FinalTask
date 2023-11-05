@@ -1,0 +1,20 @@
+{
+  "data": {
+    "id": 54,
+    "referenceId": "202311050000054",
+    "claimEvent": {
+      "id": 53,
+      "name": "purchasing music instruments",
+      "status": true,
+      "isDeleted": false
+    },
+    "currencyType": {
+      "id": "DZD",
+      "name": "Algerian Dinar"
+    },
+    "remarks": "some Wired Data",
+    "status": "SUBMITTED"
+  },
+  "meta": [],
+  "rels": []
+}
