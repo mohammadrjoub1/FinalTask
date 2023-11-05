@@ -21,7 +21,7 @@ describe("Senario #1", () => {
 
     cy.prepareDataForPhaseOne();
   });
-  it("TC #1", () => {
+  it("creating an Employee Report and make assertion for the report data", () => {
     Report.deleteAllReports();
 
     cy.get("@jobTitleId").then((jobTitleId) => {
