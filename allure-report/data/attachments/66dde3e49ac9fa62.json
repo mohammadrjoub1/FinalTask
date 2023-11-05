@@ -1,0 +1,38 @@
+{
+  "data": {
+    "empNumber": 518,
+    "joinedDate": null,
+    "jobTitle": {
+      "id": 178,
+      "title": "Violin Player77",
+      "isDeleted": false
+    },
+    "jobSpecificationAttachment": {
+      "id": null,
+      "filename": null
+    },
+    "empStatus": {
+      "id": null,
+      "name": null
+    },
+    "jobCategory": {
+      "id": null,
+      "name": null
+    },
+    "subunit": {
+      "id": null,
+      "name": null,
+      "unitId": null
+    },
+    "location": {
+      "id": 163,
+      "name": "GazaSkyGeeks"
+    },
+    "employeeTerminationRecord": {
+      "id": null,
+      "date": null
+    }
+  },
+  "meta": [],
+  "rels": []
+}

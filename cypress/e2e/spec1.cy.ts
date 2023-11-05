@@ -24,7 +24,7 @@ describe("Senario #1", () => {
   afterEach("", () => {
     DeleteAllData.deleteEverything();
   });
-  it("creating an Employee Report and make assertion for the report data", () => {
+  it("creating an Employee Report and make assertion for the report data ", () => {
     Report.deleteAllReports();
 
     cy.get("@jobTitleId").then((jobTitleId) => {
