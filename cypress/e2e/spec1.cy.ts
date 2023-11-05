@@ -21,6 +21,9 @@ describe("Senario #1", () => {
 
     cy.prepareDataForPhaseOne();
   });
+  afterEach("", () => {
+    DeleteAllData.deleteEverything();
+  });
   it("creating an Employee Report and make assertion for the report data", () => {
     Report.deleteAllReports();
 
@@ -31,7 +34,5 @@ describe("Senario #1", () => {
     });
 
     Report.reportUiAssertion();
-
-    DeleteAllData.deleteEverything();
   });
 });
