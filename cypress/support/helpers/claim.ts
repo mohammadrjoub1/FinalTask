@@ -16,7 +16,7 @@ export class Claim {
             url: `api/v2/claim/requests/${response.body.data.id}/expenses`,
             body: {
               expenseTypeId: expenseId,
-              date: "2023-11-08",
+              date: "2023-11-06",
               amount: "50000.00",
               note: null,
             },
@@ -69,7 +69,7 @@ export class Claim {
   static claimAssertion(status) {
     cy.get(":nth-child(11) > .oxd-main-menu-item > .oxd-text").click();
 
-    cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(10).should("contain", "2023-11-05");
+    cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(10).should("contain", "2023-11-06");
     cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(12).should("contain", status);
     cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(14).should("contain", "50,000.00");
   }
