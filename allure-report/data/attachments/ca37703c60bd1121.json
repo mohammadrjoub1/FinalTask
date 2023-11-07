@@ -1,0 +1,36 @@
+{
+  "name": "RjoubReport",
+  "include": "onlyCurrent",
+  "criteria": {
+    "14": {
+      "operator": "eq",
+      "x": "96",
+      "y": "undefined"
+    },
+    "20": {
+      "operator": "in",
+      "x": "47",
+      "y": "undefined"
+    }
+  },
+  "fieldGroup": {
+    "1": {
+      "fields": [
+        11
+      ],
+      "includeHeader": false
+    },
+    "6": {
+      "fields": [
+        77
+      ],
+      "includeHeader": false
+    },
+    "7": {
+      "fields": [
+        67
+      ],
+      "includeHeader": false
+    }
+  }
+}
