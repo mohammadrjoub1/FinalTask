@@ -37,7 +37,7 @@ export class Claim {
       });
     });
   }
-  static approveClaim() {
+  static approveClaimApi() {
     cy.get("@calimId").then((calimId) => {
       cy.logOut();
       cy.logIn("Admin", "admin123");
@@ -51,7 +51,26 @@ export class Claim {
     });
     Claim.claimAssertion("Paid");
   }
-  static cancelClaim() {
+  static approveClaimUi() {
+    cy.logOut();
+    cy.logIn("Admin", "admin123");
+
+    cy.get(".oxd-navbar-nav").contains("span", "Claim").click();
+    cy.get('[role="table"]').contains("div", "mohammad rjoub").parent().parent().parent().contains('[type="button"]', " View Details ").click();
+    cy.get(".oxd-button--secondary").click();
+    Claim.claimAssertion("Paid");
+  }
+  static cancelClaimUi() {
+    cy.logOut();
+    cy.logIn("Admin", "admin123");
+
+    cy.get(".oxd-navbar-nav").contains("span", "Claim").click();
+    cy.get('[role="table"]').contains("div", "mohammad rjoub").parent().parent().parent().contains('[type="button"]', " View Details ").click();
+    cy.get(".oxd-button--danger").click();
+    Claim.claimAssertion("Rejected");
+  }
+
+  static cancelClaimApi() {
     cy.get("@calimId").then((calimId) => {
       cy.logOut();
       cy.logIn("Admin", "admin123");
@@ -63,13 +82,13 @@ export class Claim {
         },
       });
     });
-     Claim.claimAssertion("Rejected");
+    Claim.claimAssertion("Rejected");
   }
 
   static claimAssertion(status) {
     cy.get(":nth-child(11) > .oxd-main-menu-item > .oxd-text").click();
 
-    cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(10).should("contain", "2023-11-06");
+    cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(10).should("contain", "2023-11-07");
     cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(12).should("contain", status);
     cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(14).should("contain", "50,000.00");
   }
