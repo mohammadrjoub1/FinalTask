@@ -1,5 +1,5 @@
 export class Report {
-  static createReport(jobTitleId, locationId) {
+  static createReportApi(jobTitleId, locationId) {
     //deletePreviousReports
     cy.api({
       method: "POST",
@@ -40,6 +40,7 @@ export class Report {
       },
     });
   }
+  static createReportUi(jobTitleId, locationId) {}
   static reportUiAssertion() {
     //below code is for navigating the report
     cy.get(":nth-child(2) > .oxd-main-menu-item").click();

@@ -1,23 +1,27 @@
-export class DeleteAllData {
+import { Employee } from "./employee";
+import { JobTitle } from "./jobTitle";
+import { Location } from "./location";
+
+export class Delete {
   static deleteEverything() {
     cy.log(`****************************************************`);
     cy.log(`****************************************************`);
     cy.log(`Delete 3 employees and job title and location i added in the beforeEach`);
 
     cy.get("@employeemohammad").then((empNumber) => {
-      cy.deleteEmployee(empNumber);
+      Employee.deleteEmp(empNumber);
     });
     cy.get("@employeeahmed").then((empNumber) => {
-      cy.deleteEmployee(empNumber);
+      Employee.deleteEmp(empNumber);
     });
     cy.get("@employeemahmoud").then((empNumber) => {
-      cy.deleteEmployee(empNumber);
+      Employee.deleteEmp(empNumber);
     });
     cy.get("@jobTitleId").then((jobTitleId) => {
-      cy.deleteJobTitle(jobTitleId);
+      JobTitle.deleteJobTitle(jobTitleId);
     });
     cy.get("@locationId").then((locationId) => {
-      cy.deleteLocation(locationId);
+      Location.deleteLocation(locationId);
     });
   }
 }

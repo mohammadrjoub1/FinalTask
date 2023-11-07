@@ -7,9 +7,20 @@ export class AttachJobTitleAndlocationToEmp {
           cy.log(` location id is:${locationId}`);
           cy.log(` jobTitle id is:${jobTitleId}`);
 
-          cy.attachJobTitleAndlocationToEmp(jobTitleId, locationId, employeeNumber);
+          AttachJobTitleAndlocationToEmp.attachJobTitleAndlocationToEmp2(jobTitleId, locationId, employeeNumber);
         });
       });
+    });
+  }
+  static attachJobTitleAndlocationToEmp2(jobId, locationId, empNumber) {
+    cy.api({
+      method: "PUT",
+      url: `/api/v2/pim/employees/${empNumber}/job-details`,
+      body: {
+        joinedDate: null,
+        jobTitleId: jobId,
+        locationId: locationId,
+      },
     });
   }
 }
