@@ -20,7 +20,7 @@ describe("Senario #1", () => {
       cy.logIn(data.username, data.password);
     });
     cy.fixture("claimDetails").then((data) => {
-      Claim.createClaim(data.currencyId, data.remarks, data.date, data.amount, data.note);
+      Claim.createClaim(data.currencyId, data.remarks, data.date, data.amount);
     });
   });
   afterEach("", () => {
