@@ -1,4 +1,5 @@
 node_modules
 allure-results
+allure-reprot
 cypress/screenshots
 cypress/videos
