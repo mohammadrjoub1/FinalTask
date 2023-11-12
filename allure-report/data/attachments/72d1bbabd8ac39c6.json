@@ -1,0 +1,16 @@
+{
+  "data": {
+    "id": 15,
+    "expenseType": {
+      "id": 14,
+      "name": "Violin Viola Expenses",
+      "status": true,
+      "isDeleted": false
+    },
+    "amount": 50000,
+    "note": null,
+    "date": "2023-11-12"
+  },
+  "meta": [],
+  "rels": []
+}

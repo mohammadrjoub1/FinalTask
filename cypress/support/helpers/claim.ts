@@ -103,7 +103,7 @@ export class Claim {
   static claimAssertion(status, date) {
     cy.get(":nth-child(11) > .oxd-main-menu-item > .oxd-text").click();
 
-    cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(10).should("contain", "2023-11-10");
+    cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(10).should("contain", date);
     cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(12).should("contain", status);
     cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(14).should("contain", "50,000.00");
   }
