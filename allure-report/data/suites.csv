@@ -1,3 +1,3 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Tue Nov 07 22:54:05 EET 2023","Tue Nov 07 22:54:27 EET 2023","22297","","Creating an Employee","","","","creating an Employee Report and make assertion for the report data Via API",""
-"passed","Tue Nov 07 22:54:30 EET 2023","Tue Nov 07 22:55:03 EET 2023","32461","","Creating an Employee","","","","creating an Employee Report and make assertion for the report data Via UI",""
+"passed","Sun Nov 12 05:22:03 EET 2023","Sun Nov 12 05:22:42 EET 2023","38361","","Creating an Employee","","","","creating an Employee Report and make assertion for the report data Via API",""
+"passed","Sun Nov 12 05:22:44 EET 2023","Sun Nov 12 05:23:18 EET 2023","33528","","Creating an Employee","","","","creating an Employee Report and make assertion for the report data Via UI",""

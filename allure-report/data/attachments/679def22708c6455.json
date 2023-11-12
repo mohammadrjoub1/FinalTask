@@ -1,0 +1,21 @@
+{
+  "data": {
+    "id": 9,
+    "name": "GazaSkyGeeks",
+    "country": {
+      "countryCode": "PS",
+      "name": "PALESTINIAN TERRITORY, OCCUPIED",
+      "countryName": "Palestinian Territory, Occupied"
+    },
+    "province": "westbank",
+    "city": "Nablus",
+    "address": "Nablus Rafedia",
+    "zipCode": "p585",
+    "phone": "022325698",
+    "fax": "022325846",
+    "note": "Nablus GazaSkyGeeks HQ",
+    "noOfEmployees": 0
+  },
+  "meta": [],
+  "rels": []
+}
