@@ -26,7 +26,7 @@ describe("Senario #1", () => {
   afterEach("", () => {
     DeleteData.deleteAll();
   });
-  it("Admin should be able to APPROVE (Pay) a claim via API", () => {
+  it("Admin should be able to APPROVE (Pay) a claim via  API", () => {
     Claim.approveClaimApi();
   });
   it("Admin should be able to APPROVE (Pay) a claim via UI", () => {
