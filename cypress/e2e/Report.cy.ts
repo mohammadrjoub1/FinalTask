@@ -16,7 +16,7 @@ describe("Creating an Employee", () => {
   afterEach("", () => {
     Delete.deleteEverything();
   });
-  it("creating an Employee Report and make assertion for the report data Via API", () => {
+  it("creating an  Employee Report and make assertion for the report data Via API", () => {
     Report.deleteAllReports();
 
     cy.get("@jobTitleId").then((jobTitleId) => {
