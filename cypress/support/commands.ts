@@ -18,11 +18,11 @@ Cypress.Commands.add("login", (username: string, password: string) => {
   cy.get('[type="submit"]').click();
 });
 Cypress.Commands.add("logOut", () => {
-  cy.get(".oxd-userdropdown-tab > .oxd-icon").click();
-  cy.get(":nth-child(4) > .oxd-userdropdown-link").click();
+  cy.get(".oxd-userdropdown-tab").click();
+  cy.get(".oxd-dropdown-menu").contains("a", "Logout").click();
 });
 
-Cypress.Commands.add("prepareDataForPhaseOne", () => {
+Cypress.Commands.add("createThreeEmployeesAndLocationAndJobTitle", () => {
   //createLocation and save jobTitleId for later use
   cy.fixture("locationData").then((data) => {
     Location.createLocation(data.name, data.countryCode, data.province, data.city, data.address, data.zipCode, data.phone, data.fax, data.note);

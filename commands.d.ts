@@ -4,6 +4,6 @@ declare namespace Cypress {
   interface Chainable {
     login(username, password);
     logOut();
-    prepareDataForPhaseOne();
+    createThreeEmployeesAndLocationAndJobTitle();
   }
 }

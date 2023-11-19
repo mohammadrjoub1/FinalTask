@@ -19,6 +19,8 @@ export class Location {
       cy.wrap(response.body.data.id).as("locationId");
     });
   }
+
+
   static deleteLocation(locationId) {
     cy.api({
       method: "DELETE",
@@ -28,4 +30,5 @@ export class Location {
       },
     });
   }
+
 }

@@ -8,12 +8,15 @@ export class Report {
         name: "RjoubReport", //report name
         include: "onlyCurrent",
         criteria: {
+          //14 means jobTitle Criteria field
           "14": {
             //job Criteria
             operator: "eq",
             x: `${jobTitleId}`, //jobTitleId
             y: "undefined",
           },
+          //20 means location Criteria field
+
           "20": {
             //location Criteria
             operator: "in",
@@ -40,20 +43,27 @@ export class Report {
       },
     });
   }
-  static reportUiAssertion() {
+  static reportAssertions() {
+    Report.reportNameAssertion();
+    Report.headerAssertion();
+    Report.cellsContentAssertion();
+    Report.quantitiyOfRows();
+  }
+  static reportNameAssertion() {
     //below code is for navigating the report
     cy.get(":nth-child(2) > .oxd-main-menu-item").click();
     cy.get(":nth-child(4) > .oxd-topbar-body-nav-tab-item").click();
-
     cy.get(':nth-child(1) > .oxd-table-row > [style="flex: 1 1 15%;"] > .oxd-table-cell-actions > :nth-child(3) > .oxd-icon').click();
     //Report Name Assertion
     cy.get(".orangehrm-card-container > .oxd-text").should("contain", "RjoubReport");
-
+  }
+  static headerAssertion() {
     //header Assertion for the three Headers
     cy.get('[data-rgcol="0"] > .header-content').should("contain", "Employee First Name");
     cy.get('[data-rgcol="1"] > .header-content').should("contain", "Job Title");
     cy.get('[data-rgcol="2"] > .header-content').should("contain", "Amount");
-
+  }
+  static cellsContentAssertion() {
     //cells Assertion
     cy.get('[style="height: 32px; transform: translateY(0px);"] > [data-rgcol="0"]').should("contain", "mohammad");
     cy.get('[style="height: 32px; transform: translateY(32px);"] > [data-rgcol="0"]').should("contain", "ahmed");
@@ -64,7 +74,8 @@ export class Report {
     cy.get('[style="height: 32px; transform: translateY(0px);"] > [data-rgcol="2"] > span > ul > :nth-child(1)').should("contain", "50000");
     cy.get('[style="height: 32px; transform: translateY(32px);"] > [data-rgcol="2"] > span > ul > :nth-child(1)').should("contain", "50000");
     cy.get('[style="height: 32px; transform: translateY(64px);"] > [data-rgcol="2"] > span > ul > :nth-child(1)').should("contain", "50000");
-
+  }
+  static quantitiyOfRows() {
     //quantitiy of rows
     cy.get("#app revogr-overlay-selection revogr-data").children().should("have.length", 3);
   }
@@ -85,6 +96,7 @@ export class Report {
         }
       });
   }
+
   static createReportUi(reportName, jobTitle, location) {
     cy.fixture("report").then((data) => {
       cy.get(".oxd-navbar-nav").contains("span", "PIM").click();
@@ -132,5 +144,3 @@ export class Report {
     });
   }
 }
-//change QA Leader to Violin Player
-//change home to gazaskygeeks
