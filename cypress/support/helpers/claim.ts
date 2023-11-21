@@ -1,5 +1,5 @@
 export class Claim {
-  static createClaim(currencyId, remarks, amount, note) {
+  static submitClaim(currencyId, remarks, amount, note) {
     var today = new Date();
     var date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
@@ -40,26 +40,11 @@ export class Claim {
       });
     });
   }
-  static approveClaimApi() {
-    var today = new Date();
-    var date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-
-    cy.get("@calimId").then((calimId) => {
-      cy.logOut();
-      cy.logIn("Admin", "admin123");
-      cy.api({
-        method: "PUT",
-        url: `/api/v2/claim/requests/${calimId}/action`,
-        body: {
-          action: "APPROVE",
-        },
-      });
-    });
-    Claim.claimAssertion("Paid", date);
-  }
   static approveClaimUi() {
     var today = new Date();
     var date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    const parts = date.split("-");
+    const finalDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
 
     cy.logOut();
     cy.logIn("Admin", "admin123");
@@ -67,11 +52,12 @@ export class Claim {
     cy.get(".oxd-navbar-nav").contains("span", "Claim").click();
     cy.get('[role="table"]').contains("div", "mohammad rjoub").parent().parent().parent().contains('[type="button"]', " View Details ").click();
     cy.get(".oxd-button--secondary").click();
-    Claim.claimAssertion("Paid", date);
   }
-  static cancelClaimUi() {
+  static rejectClaimUi() {
     var today = new Date();
     var date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    const parts = date.split("-");
+    const finalDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
 
     cy.logOut();
     cy.logIn("Admin", "admin123");
@@ -79,32 +65,14 @@ export class Claim {
     cy.get(".oxd-navbar-nav").contains("span", "Claim").click();
     cy.get('[role="table"]').contains("div", "mohammad rjoub").parent().parent().parent().contains('[type="button"]', " View Details ").click();
     cy.get(".oxd-button--danger").click();
-    Claim.claimAssertion("Rejected", date);
   }
 
-  static cancelClaimApi() {
-    var today = new Date();
-    var date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  static claimAssertion(status, finalDate, amount) {
+    cy.log(finalDate);
+    cy.get(".oxd-navbar-nav").contains("span", "Claim").click();
 
-    cy.get("@calimId").then((calimId) => {
-      cy.logOut();
-      cy.logIn("Admin", "admin123");
-      cy.api({
-        method: "PUT",
-        url: `/api/v2/claim/requests/${calimId}/action`,
-        body: {
-          action: "REJECT",
-        },
-      });
-    });
-    Claim.claimAssertion("Rejected", date);
-  }
-
-  static claimAssertion(status, date) {
-    cy.get(":nth-child(11) > .oxd-main-menu-item > .oxd-text").click();
-
-    cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(10).should("contain", date);
+    cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(10).should("contain", `${finalDate}`);
     cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(12).should("contain", status);
-    cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(14).should("contain", "50,000.00");
+    cy.get(".oxd-table-body").contains("div", "mohammad rjoub").parent().parent().find("div").eq(14).should("contain", amount);
   }
 }

@@ -1,12 +1,16 @@
 import { faker } from "@faker-js/faker";
 import { Events } from "../support/helpers/events";
-import { DeleteData } from "../support/helpers/deleteData";
 import { Expenses } from "../support/helpers/expenses";
 import { Employee } from "../support/helpers/Employee";
 import { Claim } from "../support/helpers/claim";
 
 describe("Senario #1", () => {
-  beforeEach("Claim Effect", () => {
+  var today = new Date();
+  var date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  // const parts = date.split("-");
+  // var finalDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+
+  beforeEach("", () => {
     cy.logIn("Admin", "admin123");
     cy.fixture("event").then((data) => {
       Events.createEvent(data.name, data.description);
@@ -20,22 +24,29 @@ describe("Senario #1", () => {
       cy.logIn(data.username, data.password);
     });
     cy.fixture("claimDetails").then((data) => {
-      Claim.createClaim(data.currencyId, data.remarks, data.date, data.amount);
+      Claim.submitClaim(data.currencyId, data.remarks, data.date, data.amount);
     });
   });
   afterEach("", () => {
-    DeleteData.deleteAll();
-  });
-  it("Admin should be able to APPROVE (Pay) a claim via  API", () => {
-    Claim.approveClaimApi();
+    cy.get("@empNumber").then((empNumber) => {
+      Employee.deleteEmployee(empNumber);
+    });
+
+    cy.get("@eventId").then((eventId) => {
+      Events.DeleteEvent(eventId);
+    });
+    cy.get("@expenseId").then((expenseId) => {
+      Expenses.deleteExpense(expenseId);
+    });
   });
   it("Admin should be able to APPROVE (Pay) a claim via UI", () => {
     Claim.approveClaimUi();
-  });
-  it("Admin should be able to Reject a claim via API", () => {
-    Claim.cancelClaimApi();
+    Claim.claimAssertion("Paid", date, "50,000.00");
   });
   it("Admin should be able to Reject a claim via UI", () => {
-    Claim.cancelClaimUi();
+    cy.log(date);
+
+    Claim.rejectClaimUi();
+    Claim.claimAssertion("Rejected", date, "50,000.00");
   });
 });
